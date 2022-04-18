@@ -4,16 +4,6 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-###
-*.class
-*.log
-*.lock
-*.jar
-*.war
-*.ear
-*velocity.log*
-###
-
 ### STS ###
 .apt_generated
 .classpath
