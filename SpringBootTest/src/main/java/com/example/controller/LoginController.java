@@ -24,9 +24,9 @@ public class LoginController {
             return "0";
         }else{
             if(list.getAdminPwd().equals(dto.getAdminPwd())){
-                return "1";
+                return list.getAdminName();
             }
-            return "-1";
+            return "0";
         }
     }
 

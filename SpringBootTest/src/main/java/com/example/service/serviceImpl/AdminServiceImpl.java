@@ -1,4 +1,4 @@
-package com.example.serviceImpl;
+package com.example.service.serviceImpl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
