@@ -1,14 +1,21 @@
 package com.example.service.serviceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bean.admin;
+import com.example.common.Constants;
+import com.example.controller.entity.adminDto;
+import com.example.exception.ServiceException;
 import com.example.mapper.AdminMapper;
 import com.example.service.AdminService;
 import com.example.utils.PageResponse;
+import com.example.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl extends ServiceImpl<AdminMapper, admin> implements AdminService {
 
     @Autowired
     private AdminMapper adminBean;
@@ -46,23 +53,43 @@ public class AdminServiceImpl implements AdminService {
     }
     
     @Override
-    public int insertAdmin(String dto) {
-        JSONObject jsonObject = JSONObject.parseObject(dto);
-        JSONObject admin1 = jsonObject.getJSONObject("data");
-        admin adm = admin1.toJavaObject(admin.class);
+    public int insertAdmin(admin dto) {
+//        JSONObject jsonObject = JSONObject.parseObject(dto);
+//        JSONObject admin1 = jsonObject.getJSONObject("data");
+//        admin adm = admin1.toJavaObject(admin.class);
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-        adm.setAdminId(""+adm.getAdminIdentity()+adm.getAdminSex()+sdf.format(date));
-        adm.setAdminPwd(adm.getAdminPhone());
-        return adminBean.insert(adm);
+        dto.setAdminId(""+dto.getAdminIdentity()+dto.getAdminSex()+sdf.format(date));
+        dto.setAdminPwd(dto.getAdminPhone());
+        return adminBean.insert(dto);
     }
 
     @Override
-    public int updateAdmin(String dto) {
-        JSONObject jsonObject = JSONObject.parseObject(dto);
-        JSONObject admin1 = jsonObject.getJSONObject("data");
-        admin adm = admin1.toJavaObject(admin.class);
-        System.out.println(adm.toString());
-        return adminBean.updateById(adm);
+    public int updateAdmin(admin dto) {
+        System.out.println(dto.toString());
+        return adminBean.updateById(dto);
+    }
+
+//    登录
+    @Override
+    public adminDto login(admin dto){
+        QueryWrapper<admin> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("admin_id",dto.getAdminId());
+        queryWrapper.eq("admin_pwd",dto.getAdminPwd());
+        admin one;
+        try{
+            one=getOne(queryWrapper);
+        }catch (Exception e){
+            throw new ServiceException(Constants.CODE_500,"系统错误");
+        }
+        if(one!=null){
+            BeanUtil.copyProperties(one,dto,true);
+            String token = TokenUtils.genToken(one.getAdminId(),one.getAdminPwd());
+            adminDto adDto = new adminDto(dto.getAdminName(),token);
+            BeanUtil.copyProperties(one,adDto,true);
+            return adDto;
+        }else {
+            throw new ServiceException(Constants.CODE_600,"用户名或密码错误");
+        }
     }
 }

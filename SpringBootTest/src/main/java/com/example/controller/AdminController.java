@@ -6,6 +6,7 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.example.bean.admin;
 import com.example.bean.role;
+import com.example.common.Result;
 import com.example.service.AdminService;
 import com.example.service.RoleService;
 import com.example.utils.PageResponse;
@@ -31,47 +32,49 @@ public class AdminController {
 
     //分页查询人员信息
     @GetMapping("/pageUsers")
-    public PageResponse<admin> pageUsers(@RequestParam int currentPage,@RequestParam int pageSize,@RequestParam String adminName,@RequestParam String adminEmail,@RequestParam String adminAddress){
-        return adminService.getProductPage(currentPage, pageSize, adminName, adminAddress, adminEmail);
+    public Result pageUsers(@RequestParam int currentPage, @RequestParam int pageSize,
+                            @RequestParam String adminName, @RequestParam String adminEmail,
+                            @RequestParam String adminAddress){
+
+        return Result.success(adminService.getProductPage(currentPage, pageSize, adminName, adminAddress, adminEmail));
     }
 
     //通过id删除人员
     @GetMapping("/deleteById")
-    public String deleteById(@RequestParam String adminId){
+    public Result deleteById(@RequestParam String adminId){
         if(adminService.deleteById(adminId)==1)
-            return "1";
-        return "0";
+            return Result.success();
+        return Result.error();
     }
 
 //    添加人员
     @PostMapping("/insertAdmin")
-    public String insertAdmin(@RequestBody String dto){
+    public Result insertAdmin(@RequestBody admin dto){
         if(adminService.insertAdmin(dto)==1){
-            return "1";
+            return Result.success();
         }
-        return "0";
+        return Result.error();
     }
 
 //    编辑人员
     @PostMapping("/updAdmin")
-    public String updAdmin(@RequestBody String dto){
+    public Result updAdmin(@RequestBody admin dto){
         if(adminService.updateAdmin(dto)==1){
-            return "1";
+            return Result.success();
         }
-        return "0";
+        return Result.error();
     }
 
 //    角色列表
     @GetMapping("/selectRole")
-    @ResponseBody
-    public List<role> selectRole(){
-        return roleService.selectRole();
+    public Result selectRole(){
+        return Result.success(roleService.selectRole());
     }
 
 //    角色count
     @GetMapping("/selectRoleCount")
-    public int selectRoleCount(){
-        return roleService.selectRoleCount();
+    public Result selectRoleCount(){
+        return Result.success(roleService.selectRoleCount());
     }
 
 //    角色上传

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.bean.admin;
+import com.example.controller.entity.adminDto;
 import com.example.utils.PageResponse;
 
 public interface AdminService {
@@ -15,8 +16,11 @@ public interface AdminService {
     int deleteById(String userId);
 
     //新增人员
-    int insertAdmin(String dto);
+    int insertAdmin(admin dto);
     //修改人员信息
-    int updateAdmin(String dto);
+    int updateAdmin(admin dto);
+
+//    登录
+    adminDto login(admin dto);
 
 }
