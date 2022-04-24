@@ -33,8 +33,11 @@ public class LoginController {
 
 //    注册
     @PostMapping("signUser")
-    public String signUser(@RequestBody admin dto){
+    public Result signUser(@RequestBody admin dto){
+        if(adminService.insertAdmin(dto)>0){
+            return Result.success();
+        }
         System.out.println(dto.toString());
-        return "1";
+        return Result.error();
     }
 }
