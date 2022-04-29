@@ -51,3 +51,6 @@ mybatis-plus:
   mapper-locations: classpath:./com/example/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+files:
+  upload:
+    path: D:/sp-pr/sp_demo/files/
