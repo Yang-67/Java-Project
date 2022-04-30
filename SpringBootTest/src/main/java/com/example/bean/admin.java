@@ -15,11 +15,12 @@ public class admin {
     private String adminAddress;
     private int adminIdentity;
     private int adminState;
+    private String adminUrl;
 
     public admin() {
     }
 
-    public admin(String adminId, String adminName, int adminAge, int adminSex, String adminPwd, String adminPhone, String adminEmail, String adminAddress, int adminIdentity, int adminState) {
+    public admin(String adminId, String adminName, int adminAge, int adminSex, String adminPwd, String adminPhone, String adminEmail, String adminAddress, int adminIdentity, int adminState, String adminUrl) {
         this.adminId = adminId;
         this.adminName = adminName;
         this.adminAge = adminAge;
@@ -30,6 +31,7 @@ public class admin {
         this.adminAddress = adminAddress;
         this.adminIdentity = adminIdentity;
         this.adminState = adminState;
+        this.adminUrl = adminUrl;
     }
 
     public String getAdminId() {
@@ -112,6 +114,14 @@ public class admin {
         this.adminState = adminState;
     }
 
+    public String getAdminUrl() {
+        return adminUrl;
+    }
+
+    public void setAdminUrl(String adminUrl) {
+        this.adminUrl = adminUrl;
+    }
+
     @Override
     public String toString() {
         return "admin{" +
@@ -120,11 +130,12 @@ public class admin {
                 ", adminAge=" + adminAge +
                 ", adminSex=" + adminSex +
                 ", adminPwd='" + adminPwd + '\'' +
-                ", adminPhone=" + adminPhone +
+                ", adminPhone='" + adminPhone + '\'' +
                 ", adminEmail='" + adminEmail + '\'' +
                 ", adminAddress='" + adminAddress + '\'' +
                 ", adminIdentity=" + adminIdentity +
                 ", adminState=" + adminState +
+                ", adminUrl='" + adminUrl + '\'' +
                 '}';
     }
 }

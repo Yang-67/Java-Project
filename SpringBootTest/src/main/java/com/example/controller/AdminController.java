@@ -62,7 +62,14 @@ public class AdminController {
         if(adminService.updateAdmin(dto)==1){
             return Result.success();
         }
+        System.out.println("修改人员信息："+dto.toString());
         return Result.error();
+    }
+
+//    根据id获取个人信息
+    @GetMapping("/selectAdminInfo")
+    public Result selectAdminInfo(@RequestParam(value = "adminId") String adminId){
+        return Result.success(adminService.getPwdById(adminId));
     }
 
 //    角色列表

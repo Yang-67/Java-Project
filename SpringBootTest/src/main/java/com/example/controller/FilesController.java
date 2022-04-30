@@ -32,6 +32,9 @@ public class FilesController {
     @Resource
     private FilesMapper fileMapper;
 
+
+
+
     @PostMapping("/upload")
     public String upload(@RequestParam MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();

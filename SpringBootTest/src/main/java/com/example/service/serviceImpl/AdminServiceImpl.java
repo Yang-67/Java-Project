@@ -85,7 +85,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, admin> implements
         if(one!=null){
             BeanUtil.copyProperties(one,dto,true);
             String token = TokenUtils.genToken(one.getAdminId(),one.getAdminPwd());
-            adminDto adDto = new adminDto(dto.getAdminName(),token);
+            adminDto adDto = new adminDto(dto.getAdminName(),token, dto.getAdminUrl());
             BeanUtil.copyProperties(one,adDto,true);
             return adDto;
         }else {
