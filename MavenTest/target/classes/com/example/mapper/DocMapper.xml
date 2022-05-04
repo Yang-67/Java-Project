@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DocMapper">
+<!--    插入上传文件信息-->
+    <insert id="addDoc" parameterType="com.example.pojo.Doc">
+        insert into doc(user_id,doc_name,doc_authority) values(#{user_id},#{doc_name},#{doc_authority})
+    </insert>
+<!--    查询可下载文件-->
+
+    <select id="getDocById" parameterType="int" resultType="com.example.pojo.Doc">
+        SELECT doc_id,doc_name,user_name FROM doc LEFT JOIN users ON doc.user_id=users.user_id WHERE doc_authority=0 OR doc.user_id = #{user_id}
+    </select>
+
+<!--    查询页数-->
+    <select id="getDocCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM doc WHERE user_id = #{user_id}
+    </select>
+
+<!--    我的文件-->
+    <select id="getMyDoc" parameterType="map" resultType="com.example.pojo.Doc">
+        SELECT * FROM doc WHERE user_id = #{user_id} Limit #{currentPage},#{pageSize}
+    </select>
+</mapper>

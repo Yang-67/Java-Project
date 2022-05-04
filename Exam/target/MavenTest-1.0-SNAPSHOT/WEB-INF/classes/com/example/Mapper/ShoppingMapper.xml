@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.Mapper.ShoppingMapper">
+    <select id="getShopping" resultType="com.example.pojo.Shopping">
+        select * from tb_ware
+    </select>
+
+    <select id="getById" parameterType="int" resultType="com.example.pojo.Shopping">
+        select * from tb_ware where wareid = #{wareid}
+    </select>
+</mapper>

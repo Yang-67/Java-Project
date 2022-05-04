@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="AjaxTextUpd:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>AjaxTextUpd</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="AjaxTextUpd-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="AjaxTextUpd:war exploded" />
+    </root>
+  </artifact>
+</component>

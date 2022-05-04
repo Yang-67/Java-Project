@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#button01").click(function (){
+                var user_name = $("#user_name").val();
+                var user_pwd = $("#user_pwd").val();
+                if(user_name != "" && user_pwd != "") {
+                    $.ajax({
+                        url:"Login01Servlet",
+                        type:"post",
+                        data:"user_name="+user_name+"&user_pwd="+user_pwd,
+                        dataType:"text",
+                        success:function (info){
+                            if(info == "true")
+                            {
+                                $("#form01").hide();//隐藏
+                                $("#result").html("登录成功");
+                                $("#ran").html("随机数在1--100之间");
+
+                                //显示猜测框
+                                $("<span>请输入猜测值</span><br>"+
+                                    "<input type=\"text\" id=\"number\" ></br>"+
+                                "<button id='yes'>确认</button> " +
+                                    "<div id=\"result02\"></div>" +
+                                    "<div id=\"result01\"></div>").appendTo($("#pd"));
+
+                                var count=0;//判断次数
+                                //判断范围
+                                $("#yes").click(function(){
+                                    count=count+1;
+                                    var num = $("#number").val();
+                                    $("#result02").append("<div>"+num+"</div>");
+                                    $("#result02").hide();
+                                    $.ajax({
+                                        url:"RandomServlet",
+                                        type:"post",
+                                        data:"number="+num,
+                                        dataType:"text",
+                                        success:function(data){
+                                            // alert(count);
+                                            if(data == 1){
+                                                $("#result01").html("正确，共猜"+count+"次");
+                                                $("#result02").show();
+                                            }
+                                            else {
+                                                $("#result01").html(data);
+                                            }
+
+                                        }
+                                    })
+                                })
+
+                                // location.replace("ListAll.html");
+                            }
+                            else
+                                $("#result").html(info);
+                        },
+                        error:function (){
+                            alert("失败");
+                        }
+                    })
+                }
+                else {
+                    $("#result").html("请输入完整信息");
+                }
+            })
+        })
+    </script>
+
+</head>
+<body>
+<form id="form01">
+  账&nbsp;号&nbsp;&nbsp;<input type="text" id="user_name" ></br>
+  密&nbsp;码&nbsp;&nbsp;<input type="password" id="user_pwd"></br>
+  <input type="button" id="button01" value="登录">
+</form>
+<div id="result"></div>
+<div id="ran"></div>
+<div id="pd">
+
+
+</div>
+</body>
+</html>

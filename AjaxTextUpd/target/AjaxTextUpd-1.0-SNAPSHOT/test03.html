@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        function fist(){
+            var user_name = $("#user_name").val();
+            $.ajax({
+                url:"Test03Servlet",
+                type:"post",
+                data:"user_name="+user_name,
+                dataType:"text",
+                success:function (info){
+                    $("#result").html(info);
+                }
+            })
+        }
+        </script>
+</head>
+<body>
+<form id="form01">
+    邮箱&nbsp;&nbsp;<input type="text" id="user_name" onblur="fist()" ></br>
+<!--    密&nbsp;码&nbsp;&nbsp;<input type="password" id="user_pwd"></br>-->
+    <input type="button" id="button01" value="登录" onclick="fist()">
+</form>
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.BookDao">
+    <select id="selectBook" resultType="com.example.maventest.Book">
+        select * from books_info
+    </select>
+
+    <insert id="addBook" parameterType="com.example.maventest.Book">
+        insert into books_info(Bno,Bname,Bauthor,Bprice,Boress) values(#{Bno},#{Bname},#{Bauthor},#{Bprice},#{Boress})
+    </insert>
+
+    <update id="updateBook" parameterType="com.example.maventest.Book">
+        update books_info set Bname=#{Bname},Bauthor=#{Bauthor},Bprice=#{Bprice},Boress=#{Boress} where Bno=#{Bno}
+    </update>
+
+    <select id="getBookById" parameterType="String" resultType="com.example.maventest.Book">
+        select * from books_info where Bno=#{Bno}
+    </select>
+
+    <delete id="removeBook" parameterType="com.example.maventest.Book">
+        delete from books_info where Bno=#{Bno}
+    </delete>
+</mapper>
+<!--namespace 是当前文件的根标签，使用dao接口的全限定名称  规范化
+    id 用方法名
+    resultType  返回的类型  用类行的全限定名称-->

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            //登录
+            $("#button01").click(function (){
+                var user_name = $("#user_name").val();
+                var user_pwd = $("#user_pwd").val();
+                if(user_name != "" && user_pwd != "") {
+                    $.ajax({
+                        url:"LoginServlet",
+                        type:"post",
+                        data:"user_name="+user_name+"&user_pwd="+user_pwd,
+                        dataType:"text",
+                        success:function (info){
+                            if(info == "true")
+                            //     $("#form01").hide();//隐藏
+                                location.replace("ListAll.html");
+                            else
+                                $("#result").html(info);
+                        },
+                        error:function (){
+                            alert("失败");
+                        }
+                    })
+                }
+                else {
+                    $("#result").html("请输入完整信息");
+                }
+            })
+
+            //查看全部
+            $("#button").click(function (){
+                $.ajax({
+                    type:"post",
+                    url:"ListAllServlet",
+                    datatype:"json",
+                    success:listAll1
+                })
+                function listAll1 (data){
+                     // alert(data);
+                    var dataObj = eval("("+data+")");
+                    $("#list").empty();
+                    $("<div id='topall' style='width: 70%; border: 1px solid; margin:0 auto'></div>").appendTo($("#list"));
+                    var $divall = $("<div style='width: 70%; border: 1px solid; margin:0 auto'></div>").appendTo($("#list"));
+                    var str="";
+
+                    for(var i = 0; i < dataObj.length; i++) {
+                        if(dataObj[i].imp == "1")
+                            str = "*加精*";
+                        var $div = $("<div id='all" + dataObj[i].content_id + "' style='width: 100%; border: 1px solid; margin:0 auto'></div>").appendTo($divall);
+                        $div.append("<div id='us" + dataObj[i].content_id + "' style='border-top: 1px solid'>用户：" + dataObj[i].username +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;" + dataObj[i].time +
+                            "</div><div id='tit" + dataObj[i].content_id + "' style='border-top: 1px solid'>"+str+"标题：" + dataObj[i].title +
+                            "</div><div id='cont" + dataObj[i].content_id + "' style='border-top: 1px dashed'>内容：" + dataObj[i].content +
+                            "</div><div id='z" + dataObj[i].content_id + "' style='border-top: 1px dashed'>赞&nbsp;" + dataObj[i].attribute +
+                            "</div>");
+
+
+                        //回复
+                        reply($div, dataObj[i].content_id);
+                    }
+                }
+            })
+        })
+
+        //回复
+        function reply($div, title_id){
+            var $but = $("<input type='button' value='查看全部评论'>").appendTo($div);
+            var $div1 = $("<div id='s"+title_id+"'></div>").appendTo($div);
+            $but.click(function (){
+                $div1.empty();
+                if($div1.is(':hidden')){
+                    $div1.show();
+                    $.ajax({
+                        type: "post",
+                        url: "ReplyServlet",
+                        data:"title_id="+title_id,
+                        datatype: "json",
+                        success: function (data){
+                            // alert(data);
+                            var dataObj1 = eval("("+data+")");
+                            for(var j = 0; j < dataObj1.length; j++){
+                                if(title_id == dataObj1[j].title_id)
+                                    $div1.append("<div style='border-top: 1px solid;margin-bottom: 10px; border-bottom: 1px solid;'>" +
+                                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + dataObj1[j].user_name+"("+dataObj1[j].reply_rtime+") : " +
+                                        " " + dataObj1[j].reply_content+"</div>");
+
+                            }
+                        }
+                    })
+                }
+                else {
+                    $div1.hide();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<form id="form01">
+    账&nbsp;号&nbsp;&nbsp;<input type="text" id="user_name" ></br>
+    密&nbsp;码&nbsp;&nbsp;<input type="password" id="user_pwd"></br>
+    <input type="button" id="button01" value="登录">
+</form>
+<!--<span id="result"></span>-->
+<div id="result"></div>
+<button type="button" id="button" >查看全部</button>
+<div id="list"></div>
+
+<!--<a href="hello-servlet">Hello Servlet</a>-->
+</body>
+</html>

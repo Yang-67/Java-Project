@@ -1,0 +1,197 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 536870912 bytes for Failed to commit area from 0x00000000c0000000 to 0x00000000e0000000 of length 536870912.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./src/hotspot/os/windows/os_windows.cpp:3521), pid=3300, tid=27800
+#
+# JRE version:  (11.0.12+7) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.12+7-b1504.28, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Djava.rmi.server.hostname=127.0.0.1 -Duser.timezone=UTC -Xmx1024m -Xms512m -Dfile.encoding=UTF-8 com.intellij.database.remote.RemoteJdbcServer com.mysql.cj.jdbc.Driver
+
+Host: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 8 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1348)
+Time: Tue Nov 30 21:51:53 2021 中国标准时间 elapsed time: 0.022048 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000024d062fa800):  JavaThread "Unknown thread" [_thread_in_vm, id=27800, stack(0x000000a0fbd00000,0x000000a0fbe00000)]
+
+Stack: [0x000000a0fbd00000,0x000000a0fbe00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5ff40a]
+V  [jvm.dll+0x783b65]
+V  [jvm.dll+0x78517d]
+V  [jvm.dll+0x785833]
+V  [jvm.dll+0x249408]
+V  [jvm.dll+0x5fc7f4]
+V  [jvm.dll+0x5f13c5]
+V  [jvm.dll+0x3076bb]
+V  [jvm.dll+0x30762a]
+V  [jvm.dll+0x307502]
+V  [jvm.dll+0x30c466]
+V  [jvm.dll+0x355543]
+V  [jvm.dll+0x355c46]
+V  [jvm.dll+0x355643]
+V  [jvm.dll+0x2e2018]
+V  [jvm.dll+0x2e31c7]
+V  [jvm.dll+0x761f57]
+V  [jvm.dll+0x76374c]
+V  [jvm.dll+0x362ab9]
+V  [jvm.dll+0x7455be]
+V  [jvm.dll+0x3cb673]
+V  [jvm.dll+0x3cda21]
+C  [jli.dll+0x536b]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x52651]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000024d049635e0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x0000024d06313800 GCTaskThread "GC Thread#0" [stack: 0x000000a0fbe00000,0x000000a0fbf00000] [id=11456]
+  0x0000024d06331000 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000a0fbf00000,0x000000a0fc000000] [id=30532]
+  0x0000024d06332800 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000a0fc000000,0x000000a0fc100000] [id=15636]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffdc92227a7]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x0000024d062f6a30] Heap_lock - owner thread: 0x0000024d062fa800
+
+Heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: Non-zero based: 0x00000000c0000000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.015 Loaded shared library C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff644430000 - 0x00007ff64443a000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\java.exe
+0x00007ffe53fb0000 - 0x00007ffe541a5000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffe523b0000 - 0x00007ffe5246e000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffe519d0000 - 0x00007ffe51c98000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffe51db0000 - 0x00007ffe51eb0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffe41c80000 - 0x00007ffe41c97000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\VCRUNTIME140.dll
+0x00007ffe41b70000 - 0x00007ffe41b89000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\jli.dll
+0x00007ffe53730000 - 0x00007ffe538d1000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffe51910000 - 0x00007ffe51932000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffe529d0000 - 0x00007ffe529fb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffe51ca0000 - 0x00007ffe51dad000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffe32cf0000 - 0x00007ffe32f8a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007ffe516c0000 - 0x00007ffe5175d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffe522a0000 - 0x00007ffe5233e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffe53210000 - 0x00007ffe53240000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffe22fd0000 - 0x00007ffe2306d000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\msvcp140.dll
+0x00007ffdc8f30000 - 0x00007ffdc9a88000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\server\jvm.dll
+0x00007ffe52010000 - 0x00007ffe520bc000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffe52630000 - 0x00007ffe526cb000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffe528a0000 - 0x00007ffe529ca000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffe52620000 - 0x00007ffe52628000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffe357c0000 - 0x00007ffe357c9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffe4f460000 - 0x00007ffe4f487000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffe4b930000 - 0x00007ffe4b93a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffe536c0000 - 0x00007ffe5372b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffe4ff40000 - 0x00007ffe4ff52000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffe41f10000 - 0x00007ffe41f21000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\verify.dll
+0x00007ffe4fd30000 - 0x00007ffe4ff14000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffe47390000 - 0x00007ffe473bc000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffe51eb0000 - 0x00007ffe51f33000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffe40760000 - 0x00007ffe40789000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\java.dll
+0x00007ffe49760000 - 0x00007ffe4976b000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\jimage.dll
+0x00007ffe40910000 - 0x00007ffe40928000 	C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\jbr\bin\server
+
+VM Arguments:
+jvm_args: -Djava.rmi.server.hostname=127.0.0.1 -Duser.timezone=UTC -Xmx1024m -Xms512m -Dfile.encoding=UTF-8 
+java_command: com.intellij.database.remote.RemoteJdbcServer com.mysql.cj.jdbc.Driver
+java_class_path (initial): C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\lib\util.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\lib\groovy-2.5.14.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2.2\plugins\DatabaseTools\lib\jdbc-console.jar;C:\Users\86136\AppData\Roaming\JetBrains\IntelliJIdea2021.2\jdbc-drivers\MySQL ConnectorJ\8.0.25\mysql-connector-java-8.0.25.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 536870912                                 {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5836300                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122910970                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122910970                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\JAVA\jdk1.8.0_281
+CLASSPATH=C:\JAVA\jdk1.8.0_281\lib;.;
+PATH=D:\Python3.9.0\Scripts\;D:\Python3.9.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\JAVA\jdk1.8.0_281\bin;D:\Anaconda;D:\Anaconda\Scripts;D:\Anaconda\Library\mingw-w64\bin;D:\Anaconda\Library\usr\bin;D:\Anaconda\Library\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;D:\MySQL\bin;C:\javaweb_jar\apache-maven-3.8.3\bin;C:\Users\86136\AppData\Local\Microsoft\WindowsApps;C:\Users\86136\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\86136\.dotnet\tools;C:\Program Files\Azure Data Studio\bin;
+USERNAME=86136
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.1348)
+OS uptime: 3 days 10:48 hours
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 10 microcode 0xc6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 8093M (655M free)
+TotalPageFile size 14237M (AvailPageFile size 213M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 59M, peak: 571M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.12+7-b1504.28) for windows-amd64 JRE (11.0.12+7-b1504.28), built on Sep  3 2021 08:39:15 by "" with MS VC++ 14.0 (VS2015)
+
+END.
