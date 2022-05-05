@@ -20,3 +20,7 @@ The Rood to Mediocre Life
 5. Meeting
 
    此项目为会议管理系统，采用MVC框架，数据层为mybatis，已完成
+   
+6. SpringSecurityTest
+
+   此项目为基于SpringSecurity的简单应用
