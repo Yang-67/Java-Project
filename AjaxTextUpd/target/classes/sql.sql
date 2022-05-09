@@ -1,4 +1,4 @@
-create database discuss
+create database discuss;
 
 -- auto-generated definition
 create table user

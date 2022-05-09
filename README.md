@@ -24,3 +24,7 @@ The Rood to Mediocre Life
 6. SpringSecurityTest
 
    此项目为基于SpringSecurity的简单应用
+   
+7. AuthenticationPermissions
+
+   此项目采用SpringSecurity实现登录认证及权限设置
