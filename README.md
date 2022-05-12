@@ -28,3 +28,7 @@ The Rood to Mediocre Life
 7. AuthenticationPermissions
 
    此项目采用SpringSecurity实现登录认证及权限设置
+   
+8. OJTest
+
+   此项目为向数据库插入大量随机有意义的数据
