@@ -32,3 +32,7 @@ The Rood to Mediocre Life
 8. OJTest
 
    此项目为向数据库插入大量随机有意义的数据
+   
+9. RedisDemo
+
+   此项目为Redis测试项目
