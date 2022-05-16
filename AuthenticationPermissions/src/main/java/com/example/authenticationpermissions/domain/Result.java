@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseResult<T> {
+public class Result<T> {
     /**
      * 状态码
      */
@@ -18,12 +18,12 @@ public class ResponseResult<T> {
      */
     private T data;
 
-    public ResponseResult(Integer code, String msg) {
+    public Result(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResponseResult(Integer code, T data) {
+    public Result(Integer code, T data) {
         this.code = code;
         this.data = data;
     }
@@ -52,7 +52,7 @@ public class ResponseResult<T> {
         this.data = data;
     }
 
-    public ResponseResult(Integer code, String msg, T data) {
+    public Result(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;

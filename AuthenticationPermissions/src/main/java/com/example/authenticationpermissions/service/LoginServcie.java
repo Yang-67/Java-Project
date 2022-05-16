@@ -1,12 +1,12 @@
 package com.example.authenticationpermissions.service;
 
 
-import com.example.authenticationpermissions.domain.ResponseResult;
+import com.example.authenticationpermissions.domain.Result;
 import com.example.authenticationpermissions.domain.User;
 
 public interface LoginServcie {
-    ResponseResult login(User user);
+    Result login(User user);
 
-    ResponseResult logout();
+    Result logout();
 
 }

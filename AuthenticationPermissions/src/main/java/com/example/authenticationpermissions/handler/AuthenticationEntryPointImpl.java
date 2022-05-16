@@ -1,7 +1,7 @@
 package com.example.authenticationpermissions.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.example.authenticationpermissions.domain.ResponseResult;
+import com.example.authenticationpermissions.domain.Result;
 import com.example.authenticationpermissions.utils.WebUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        ResponseResult result = new ResponseResult(HttpStatus.UNAUTHORIZED.value(),"用户认证失败请查询登录");
+        Result result = new Result(HttpStatus.UNAUTHORIZED.value(),"用户认证失败请查询登录");
         String json = JSON.toJSONString(result);
         //处理异常
         WebUtils.renderString(response,json);
