@@ -15,7 +15,6 @@ public class LoginController {
 
     @PostMapping("/user/login")
     public Result login(@RequestBody User user){
-        System.out.println(user.toString());
         //登录
         return loginServcie.login(user);
     }
