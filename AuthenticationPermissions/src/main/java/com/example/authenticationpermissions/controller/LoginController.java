@@ -1,8 +1,8 @@
 package com.example.authenticationpermissions.controller;
 
-import com.example.authenticationpermissions.domain.Result;
+import com.example.authenticationpermissions.domain.ResponseResult;
 import com.example.authenticationpermissions.domain.User;
-import com.example.authenticationpermissions.service.LoginServcie;
+import com.example.authenticationpermissions.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    private LoginServcie loginServcie;
+    private LoginService loginService;
 
-    @PostMapping("/user/login")
-    public Result login(@RequestBody User user){
+    @RequestMapping("/user/login")
+    public ResponseResult login(@RequestBody User user){
         //登录
-        return loginServcie.login(user);
+        return loginService.login(user);
     }
 
     @RequestMapping("/user/logout")
-    public Result logout(){
-        return loginServcie.logout();
+    public ResponseResult logout(){
+        return loginService.logout();
     }
 }

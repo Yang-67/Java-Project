@@ -16,6 +16,7 @@
     </properties>
 
     <dependencies>
+<!--        权限验证-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -52,6 +53,7 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+<!--        mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
