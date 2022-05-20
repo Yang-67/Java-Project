@@ -15,6 +15,5 @@
             user_id = #{userid}
           AND r.`status` = 0
           AND m.`status` = 0
-
     </select>
 </mapper>

@@ -23,8 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
     private UserMapper userMapper;
 
-//    @Resource
-//    private MenuMapper menuMapper;
+    @Resource
+    private MenuMapper menuMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,17 +33,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUserName,username);
         User user = userMapper.selectOne(queryWrapper);
-//        System.out.println("userDetail结果"+username+","+user.toString());
         //如果没有查询到用户就抛出异常
         if(Objects.isNull(user)){
             throw new RuntimeException("用户名或者密码错误");
         }
-
 //        List<String> list = new ArrayList<>(Arrays.asList("test","admin"));
-//        System.out.println("menuStart:"+"-------");
-//        List<String> list = menuMapper.selectPermsByUserId((long) user.getId());
-//        System.out.println("menuEnd:"+"-------");
+        List<String> list = menuMapper.selectPermsByUserId((long) user.getId());
         //把数据封装成UserDetails返回
-        return new LoginUser(user);
+        return new LoginUser(user,list);
     }
 }

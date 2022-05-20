@@ -15,36 +15,34 @@ import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class LoginUser implements UserDetails {
 
     private User user;
 
-//    private List<String> permissions;
+    private List<String> permissions;
 
 //    获取权限信息
-//    public LoginUser(User user, List<String> permissions) {
-//        this.user = user;
-//        this.permissions = permissions;
-//    }
-//    @JSONField(serialize = false)
-//    private List<SimpleGrantedAuthority> authorities;
+    public LoginUser(User user, List<String> permissions) {
+        this.user = user;
+        this.permissions = permissions;
+    }
+    @JSONField(serialize = false)
+    private List<SimpleGrantedAuthority> authorities;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        if(authorities!=null){
-//            return authorities;
+        if(authorities!=null){
+            return authorities;
+        }
+        //把permissions中String类型的权限信息封装成SimpleGrantedAuthority对象
+//       authorities = new ArrayList<>();
+//        for (String permission : permissions) {
+//            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(permission);
+//            authorities.add(authority);
 //        }
-//        //把permissions中String类型的权限信息封装成SimpleGrantedAuthority对象
-////       authorities = new ArrayList<>();
-////        for (String permission : permissions) {
-////            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(permission);
-////            authorities.add(authority);
-////        }
-//        authorities = permissions.stream()
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
-//        return authorities;
-        return null;
+        authorities = permissions.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+        return authorities;
     }
 
     @Override

@@ -20,20 +20,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //创建BCryptPasswordEncoder注入容器
+    // 创建BCryptPasswordEncoder注入容器
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-//
-//    @Autowired
-//    private AuthenticationEntryPoint authenticationEntryPoint;
-//
-//    @Autowired
-//    private AccessDeniedHandler accessDeniedHandler;
-//
+    // 认证失败处理器
+    @Autowired
+    private AuthenticationEntryPoint authenticationEntryPoint;
+    // 授权失败处理器
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
+    // Security相关配置
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -51,17 +51,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //添加过滤器
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-//
-//        //配置异常处理器
-//        http.exceptionHandling()
-//                //配置认证失败处理器
-//                .authenticationEntryPoint(authenticationEntryPoint)
-//                .accessDeniedHandler(accessDeniedHandler);
-//
-//        //允许跨域
-//        http.cors();
+
+        //配置异常处理器
+        http.exceptionHandling()
+                //配置认证失败处理器
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
+
+        //允许跨域
+        http.cors();
     }
-//
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
