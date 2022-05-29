@@ -36,3 +36,7 @@ The Rood to Mediocre Life
 9. RedisDemo
 
    此项目为Redis测试项目
+   
+10. ThirdPartyLogin
+
+    此项目为Springboot整合第三方登录
