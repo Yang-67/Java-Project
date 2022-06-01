@@ -40,3 +40,7 @@ The Rood to Mediocre Life
 10. ThirdPartyLogin
 
     此项目为Springboot整合第三方登录
+    
+11. SwaggerDemo
+
+    此项目为配置Swagger并进行测试
