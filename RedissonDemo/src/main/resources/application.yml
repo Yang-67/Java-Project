@@ -1,0 +1,20 @@
+# 应用名称
+spring:
+  application:
+    name: RedissonDemo
+
+  redisson:
+    address: 192:168:1:204:6379
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#  redisson:
+#    host:
+#      config: redis://127:0:0:1:6379
+
+# 应用服务 WEB 访问端口
+server:
+  port: 8081
+
+

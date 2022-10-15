@@ -13,6 +13,8 @@ spring:
       ddl-auto: update
     # 控制台显示SQL
     show-sql: true
+    # 格式SQL
+    # format_sql: true
   # 应用服务 WEB 访问端口
 server:
   port: 8081
