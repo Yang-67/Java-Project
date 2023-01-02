@@ -31,10 +31,13 @@ class YangDemoApplicationTests {
             Set<String> urlSet = info.getPatternsCondition().getPatterns();
             // 获取全部请求方式
             Set<RequestMethod> Methods = info.getMethodsCondition().getMethods();
-            log.info("method: {}", Methods);
-            for (String url : urlSet){
-                log.info("url : {}",url);
+            if(!Methods.isEmpty()) {
+                log.info("method: {}", Methods);
+                for (String url : urlSet){
+                    log.info("url : {}",url);
+                }
             }
+
         }
     }
 }
